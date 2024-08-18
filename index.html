@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Container for the entire layout -->
+    <div class="overall-layout">
+        <div class="sidebar" id="sideNavBar">
+            <!-- NavBar-Container -->
+            <div class="sidebar-top">
+                <div class="sidebar-heading-content">
+                    <div class="sidebar-title">
+                        <img src="./assets/icons/e-dashboard-icon.svg" width="26" height="26" alt="Brand-Logo">
+                        <p>E-Dashboard</p>
+                    </div>
+                    <img src="./assets/icons/collapse-hamburger-icon.svg" alt="Menu Open Icon" class="menu-icon"
+                        width="24" height="24" id="menuToggle">
+                </div>
+
+                <div class="company-info">
+                    <div>
+                        <div class="dropdown">
+                            <div class="avatar-icon">A</div>
+                            <input type="text" class="text-box" placeholder="AlphaLinx Inc." readonly>
+                            <div class="option">
+                                <div onclick="show('AlphaLinx Inc.')">AlphaLinx Inc.</div>
+                                <div onclick="show('BetaLinx Inc.')">BetaLinx Inc.</div>
+                                <div onclick="show('GammaLinx Inc.')">GammaLinx Inc.</div>
+                                <div onclick="show('DeltaLinx Inc.')">DeltaLinx Inc.</div>
+                                <div onclick="show('EpsilonLinx Inc.')">EpsilonLinx Inc.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-menu">
+                        <a href="#" class="nav-menu-items"><img src="./assets/icons/dashboard-button-icon.svg"
+                                alt="Dashboard Icon">Dashboard</a>
+
+                        <div class="nav-dropdown">
+                            <a href="#" class="nav-menu-items dropdown-toggle"><img
+                                    src="./assets/icons/my-business-icon.svg" alt="My Business Icon">My Business <img
+                                    src="./assets/icons/down-arrow-white.svg" alt=""></a>
+                            <div class="dropdown-content-business">
+                                <a href="#">Sub-item 1</a>
+                                <a href="#">Sub-item 2</a>
+                            </div>
+                        </div>
+
+                        <div class="nav-dropdown">
+                            <a href="#" class="nav-menu-items dropdown-toggle"><img
+                                    src="./assets/icons/financial-resources-icon.svg"
+                                    alt="Financial Resources Icon">Financial Resources <img
+                                    src="./assets/icons/down-arrow-white.svg" alt=""></a>
+                            <div class="dropdown-content-financial">
+                                <a href="#">Sub-item 1</a>
+                                <a href="#">Sub-item 2</a>
+                            </div>
+                        </div>
+
+                        <a href="#" class="nav-menu-items"><img src="./assets/icons/mail-box-icon.svg"
+                                alt="Mailbox Icon">Mailbox</a>
+                        <a href="#" class="nav-menu-items"><img src="./assets/icons/visa-center-icon.svg"
+                                alt="Visa-Center Icon">Visa-Center</a>
+                        <a href="#" class="nav-menu-items"><img src="./assets/icons/compliance-icon.svg"
+                                alt="Compliances Icon">Compliances <span id="complainceNumber">02</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logout Option-Container -->
+            <div class="sidebar-bottom">
+                <a href="#"><img src="./assets/icons/notifications-bell-icon.svg" width="24" height="24"
+                        alt="Notification-Icon">Notification-Icon</a>
+                <a href="#" class="three-dots"><img src="./assets/icons/help-center-icon.svg" width="24" height="24"
+                        alt="Help Center">Help Center</a>
+                <a href="#" class="three-dots">
+                    <div class="avatar-icon">J</div>
+                    <p>
+                        <span>Jacobe James</span>
+                        <br>
+                        <span class="email">Jacobejames@gmail.com</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="hamburger-open-menu" id="openmenu">
+            <img src="./assets/icons/hamburger-icon.svg" alt="">
+        </div>
+
+
+        <!-- DashBoard Settings -->
+        <div class="dashboard">
+            <div class="welcome-msg">
+                <h2>Good morning, <span>Emily! &nbsp;👋</span></h2>
+                <p>Welcome back!</p>
+            </div>
+
+            <div class="doc-status">
+                <img src="./assets/icons/upto-date-documents-icon.svg" alt="Card-Checked" class="card-checked">
+                <h2>All your <span class="doc-span1">documents</span> are <span class="doc-span2">up to date!</span>
+                </h2>
+                <!-- Horizontal Line -->
+                <span class="horizontal-line"></span>
+                <p>
+                    You have 3 upcoming document updates in January.
+                    <button class="arrow-button">
+                        <span class="arrow">&gt;</span>
+                    </button>
+                </p>
+                <img src="./assets/icons/stars-icon.svg" alt="Stars Icon" class="stars-icon">
+            </div>
+
+            <!-- The pie chart card section -->
+            <div class="gradient-rectangle-2">
+                <div class="doughnut-chart-container">
+                    <canvas id="doughnutChart"></canvas>
+                    <div id="doughnut-chart-text">Applications</div>
+                </div>
+                <ul class="application-status">
+                    <li class="application-status-content">
+                        <span class="color-indicator" style="background-color: #F3B17D;"></span> Incomplete
+                    </li>
+                    <li class="application-status-content">
+                        <span class="color-indicator" style="background-color: #E77D76;"></span> Pending approval
+                    </li>
+                    <li class="application-status-content">
+                        <span class="color-indicator" style="background-color: #5BB991;"></span> Approved
+                    </li>
+                </ul>
+            </div>
+            <!-- The pie chart card section ends here -->
+
+            <!-- The mail-box section starts here -->
+            <div class="mail-box">
+                <div class="mail-box-header">
+                    <p class="mail-box-heading">Mailbox</p>
+                    <a href="#">View all</a>
+                </div>
+                <span>Check on your all your mail in one go.</span>
+                <div class="mail-box-footer">
+                    <div class="mail-box-item">
+                        <div class="mail-box-icon new-icon">
+                            <img src="./assets/icons/mail-box-new-icon.svg" alt="New Mail Icon">
+                        </div>
+                        <div class="mail-box-details">
+                            <p>New</p>
+                            <p>23</p>
+                        </div>
+                    </div>
+                    <div class="mail-box-item">
+                        <div class="mail-box-icon requested-icon">
+                            <img src="./assets/icons/mail-box-requested-icons.svg" alt="Requested Mail Icon">
+                        </div>
+                        <div class="mail-box-details">
+                            <p>Requested</p>
+                            <p>23</p>
+                        </div>
+                    </div>
+                    <div class="mail-box-item">
+                        <div class="mail-box-icon actions-icon">
+                            <img src="./assets/icons/mail-box-actions-taken.svg" alt="Actions Taken Icon">
+                        </div>
+                        <div class="mail-box-details">
+                            <p>Actions taken</p>
+                            <p>23</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- The mail box section ends here -->
+
+
+            <!-- legal compliances section starts here -->
+            <!-- The mail-box section starts here -->
+            <div class="legal-compliances">
+                <div class="legal-compliances-header">
+                    <p class="legal-compliances-heading">Legal compliance</p>
+                    <a href="#">View all</a>
+                </div>
+                <span>Keep your requirements up to date.</span>
+                <div class="legal-compliances-footer">
+                    <div class="legal-compliances-item">
+                        <div class="legal-compliances-icon new-icon">
+                            <img src="./assets/icons/mail-box-new-icon.svg" alt="New Mail Icon">
+                        </div>
+                        <div class="legal-compliances-details">
+                            <p>Reminders</p>
+                            <p>23</p>
+                        </div>
+                    </div>
+                    <div class="legal-compliances-item">
+                        <div class="legal-compliances-icon requested-icon">
+                            <img src="./assets/icons/mail-box-requested-icons.svg" alt="Requested Mail Icon">
+                        </div>
+                        <div class="legal-compliances-details">
+                            <p>In progress</p>
+                            <p>23</p>
+                        </div>
+                    </div>
+                    <div class="legal-compliances-item">
+                        <div class="legal-compliances-icon actions-icon">
+                            <img src="./assets/icons/mail-box-actions-taken.svg" alt="Actions Taken Icon">
+                        </div>
+                        <div class="legal-compliances-details">
+                            <p>To approve</p>
+                            <p>23</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- The mail box section ends here -->
+            <!-- legal compliances section ends here -->
+        </div>
+
+
+        <!-- The second section of the page with tasks and payment history tables starts here-->
+        <div class="task-container">
+
+            <!-- Tasks Section -->
+            <div class="tasks-section">
+                <div class="tasks-header">
+                    <h2>Tasks</h2>
+                    <a href="#">View all</a>
+                </div>
+                <div class="tasks-tabs">
+                    <button class="active-tab">My tasks</button>
+                    <button>Overdue</button>
+                    <button>Assigned by me</button>
+                </div>
+                <!-- <hr> -->
+                <table class="tasks-table" id="task">
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>Due date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Update Tax Document for Alphalinx...</td>
+                            <td>Compliance</td>
+                            <td>23/11/23</td>
+                            <td><button class="status-button">Request sent</button></td>
+                        </tr>
+                        <tr>
+                            <td>Update KYC document</td>
+                            <td>Compliance</td>
+                            <td>23/11/23</td>
+                            <td><button class="status-button">Request sent</button></td>
+                        </tr>
+                        <tr>
+                            <td>Add clearer photo for visa application</td>
+                            <td>Visa center</td>
+                            <td>23/11/23</td>
+                            <td><button class="status-button pending">Pending action</button></td>
+                        </tr>
+                        <tr>
+                            <td>Document not clear: please add new file</td>
+                            <td>Visa center</td>
+                            <td>23/11/23</td>
+                            <td><button class="status-button pending">Pending action</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Payment History Section -->
+            <div class="payment-history-section">
+                <div class="payment-history-header">
+                    <h2>Transaction history</h2>
+                    <a href="#">View all</a>
+                </div>
+
+                <table class="payment-history-table" id="payment">
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Date of transaction</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Transaction ID">#764657758</td>
+                            <td data-label="Date">23/01/19</td>
+                            <td data-label="Amount">$5.99</td>
+                            <td data-label="Description">Mailbox</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Transaction ID">#764657758</td>
+                            <td data-label="Date">22/01/19</td>
+                            <td data-label="Amount">$99</td>
+                            <td data-label="Description">Registration (upgrade)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Transaction ID">#764657758</td>
+                            <td data-label="Date">19/01/19</td>
+                            <td data-label="Amount">$5.99</td>
+                            <td data-label="Description">Description Mailbox</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Transaction ID">#764657758</td>
+                            <td data-label="Date">09/01/19</td>
+                            <td data-label="Amount">$5.99</td>
+                            <td data-label="Description">Description Mailbox</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Transaction ID">#764657758</td>
+                            <td data-label="Date">23/12/18</td>
+                            <td data-label="Amount">$5.99</td>
+                            <td data-label="Description">Description Mailbox</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <!-- The second section of the page with tasks and payment history tables ends here-->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./script.js"></script>
+    <script>
+        const ctx = document.getElementById('doughnutChart').getContext('2d');
+        const doughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Incomplete', 'Pending approval', 'Approved'],
+                datasets: [{
+                    data: [5, 3, 13], // Replace with dynamic values
+                    backgroundColor: ['#F3B17D', '#E77D76', '#5BB991'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Function to update chart data
+        function updateChart(incomplete, pending, approved) {
+            doughnutChart.data.datasets[0].data = [incomplete, pending, approved];
+            doughnutChart.update();
+        }
+
+        // Example: Update chart with new data
+        updateChart(7, 5, 9);
+
+
+        document.querySelectorAll('#payment tr td[data-label="Amount"]').forEach(function (amountCell) {
+            amountCell.addEventListener('click', function () {
+                // Toggle expanded class on the row (parent <tr>)
+                const row = this.closest('tr');
+                row.classList.toggle('expanded');
+
+                // Change the arrow direction based on the expanded state
+                if (row.classList.contains('expanded')) {
+                    this.querySelector('::after').content = '▲';
+                } else {
+                    this.querySelector('::after').content = '▼';
+                }
+            });
+        });
+
+
+        // to toggle dropdown list
+
+        document.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
+            toggle.addEventListener('click', function (event) {
+                event.preventDefault();  // Prevent the default anchor behavior
+                // Toggle visibility of the dropdown content
+                const dropdownContent = this.nextElementSibling;
+                dropdownContent.style.display = (dropdownContent.style.display === 'flex') ? 'none' : 'flex';
+            });
+        });
+
+
+        // collapse sidebar
+        const menuToggle = document.getElementById('menuToggle');
+        const sideNavBar = document.getElementById('sideNavBar');
+        const openMenu = document.getElementById('openmenu');
+
+        // Toggle sidebar visibility
+        menuToggle.addEventListener('click', function () {
+            sideNavBar.style.display = 'none';  // Hide the sidebar
+            openMenu.style.display = 'block';   // Show the hamburger icon
+        });
+
+        // Add an event listener for the hamburger-open-menu to bring the sidebar back
+        openMenu.addEventListener('click', function () {
+            sideNavBar.style.display = 'flex';  // Show the sidebar
+            openMenu.style.display = 'none';     // Hide the hamburger icon
+        });
+    </script>
+</body>
+
+</html>
