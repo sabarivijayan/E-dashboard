@@ -296,6 +296,14 @@
   font-weight: 500;
 }
 
+.truncate {
+  max-width: 8ch;             /* Limits the width to 8 characters */
+  white-space: nowrap;        /* Prevents text from wrapping to the next line */
+  overflow: hidden;           /* Hides any text that exceeds the defined width */
+  text-overflow: ellipsis;    /* Adds the ellipsis (...) at the end of the truncated text */
+}
+
+
 .welcome-msg p {
   color: rgba(106, 106, 109, 1);
 }
