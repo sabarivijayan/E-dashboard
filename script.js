@@ -30,9 +30,6 @@ function createDoughnutChart(values, colors, gap = 2) {
 
     // Set the conic-gradient dynamically with gaps
     document.getElementById('doughnutChart').style.background = `conic-gradient(${gradientSegments})`;
-    
-    // Set the center text
-    // document.getElementById('chartValue').textContent = total;
 }
 
 
@@ -67,9 +64,6 @@ for(let listItem of listItems){
     listItem.style.backgroundColor = colors[item];
 
 }
-// listItems.forEach((indicator, index) => {
-// });
-
 
 let btn = document.querySelector('#btn')
 let sidebar = document.querySelector('.sidebar')

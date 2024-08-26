@@ -734,11 +734,6 @@ h2 {
     max-width: 100%;
     overflow-x: auto;
   }
-
-  /* this helps to view the table content in the same cell*/
-  /* #task td{
-        display: block;
-    } */
   /* Targeting the task row */
 
   /* Tasks table responsiveness */
@@ -782,7 +777,6 @@ h2 {
     font-weight: bold; /* Make the content of the first cell bold */
   }
 
-  /* Payment history table responsiveness */
   /* Payment history table responsiveness */
   #payment thead {
     display: none;
