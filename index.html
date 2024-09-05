@@ -228,7 +228,6 @@
 
         <!-- The second section of the page with tasks and payment history tables starts here-->
         <div class="task-container">
-
             <!-- Tasks Section -->
             <div class="tasks-section">
                 <div class="tasks-header">
@@ -240,8 +239,7 @@
                     <button>Overdue</button>
                     <button>Assigned by me</button>
                 </div>
-                <!-- <hr> -->
-                <table class="tasks-table" id="task">
+                <table class="tasks-table" id="tasks-table">
                     <thead>
                         <tr>
                             <th>Task</th>
@@ -251,30 +249,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Update Tax Document for Alphalinx...</td>
-                            <td>Compliance</td>
-                            <td>23/11/23</td>
-                            <td><button class="status-button">Request sent</button></td>
-                        </tr>
-                        <tr>
-                            <td>Update KYC document</td>
-                            <td>Compliance</td>
-                            <td>23/11/23</td>
-                            <td><button class="status-button">Request sent</button></td>
-                        </tr>
-                        <tr>
-                            <td>Add clearer photo for visa application</td>
-                            <td>Visa center</td>
-                            <td>23/11/23</td>
-                            <td><button class="status-button pending">Pending action</button></td>
-                        </tr>
-                        <tr>
-                            <td>Document not clear: please add new file</td>
-                            <td>Visa center</td>
-                            <td>23/11/23</td>
-                            <td><button class="status-button pending">Pending action</button></td>
-                        </tr>
+                        <!-- Dynamic content will be inserted here -->
                     </tbody>
                 </table>
             </div>
@@ -285,8 +260,7 @@
                     <h2>Transaction history</h2>
                     <a href="#">View all</a>
                 </div>
-
-                <table class="payment-history-table" id="payment">
+                <table class="payment-history-table" id="payment-table">
                     <thead>
                         <tr>
                             <th>Transaction ID</th>
@@ -296,123 +270,151 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td data-label="Transaction ID">#764657758</td>
-                            <td data-label="Date">23/01/19</td>
-                            <td data-label="Amount">$5.99</td>
-                            <td data-label="Description">Mailbox</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Transaction ID">#764657758</td>
-                            <td data-label="Date">22/01/19</td>
-                            <td data-label="Amount">$99</td>
-                            <td data-label="Description">Registration (upgrade)</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Transaction ID">#764657758</td>
-                            <td data-label="Date">19/01/19</td>
-                            <td data-label="Amount">$5.99</td>
-                            <td data-label="Description">Description Mailbox</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Transaction ID">#764657758</td>
-                            <td data-label="Date">09/01/19</td>
-                            <td data-label="Amount">$5.99</td>
-                            <td data-label="Description">Description Mailbox</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Transaction ID">#764657758</td>
-                            <td data-label="Date">23/12/18</td>
-                            <td data-label="Amount">$5.99</td>
-                            <td data-label="Description">Description Mailbox</td>
-                        </tr>
+                        <!-- Dynamic content will be inserted here -->
                     </tbody>
                 </table>
             </div>
-
         </div>
-        <!-- The second section of the page with tasks and payment history tables ends here-->
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./script.js"></script>
-    <script>
-        const ctx = document.getElementById('doughnutChart').getContext('2d');
-        const doughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Incomplete', 'Pending approval', 'Approved'],
-                datasets: [{
-                    data: [5, 3, 13], // Replace with dynamic values
-                    backgroundColor: ['#F3B17D', '#E77D76', '#5BB991'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                cutout: '70%',
-                plugins: {
-                    legend: {
-                        display: false
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="./script.js"></script>
+        <script>
+            const ctx = document.getElementById('doughnutChart').getContext('2d');
+            const doughnutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Incomplete', 'Pending approval', 'Approved'],
+                    datasets: [{
+                        data: [5, 3, 13], // Replace with dynamic values
+                        backgroundColor: ['#F3B17D', '#E77D76', '#5BB991'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
                     }
                 }
+            });
+
+            // Function to update chart data
+            function updateChart(incomplete, pending, approved) {
+                doughnutChart.data.datasets[0].data = [incomplete, pending, approved];
+                doughnutChart.update();
             }
-        });
 
-        // Function to update chart data
-        function updateChart(incomplete, pending, approved) {
-            doughnutChart.data.datasets[0].data = [incomplete, pending, approved];
-            doughnutChart.update();
-        }
-
-        // Example: Update chart with new data
-        updateChart(7, 5, 9);
+            // Example: Update chart with new data
+            updateChart(7, 5, 9);
 
 
-        document.querySelectorAll('#payment tr td[data-label="Amount"]').forEach(function (amountCell) {
-            amountCell.addEventListener('click', function () {
-                // Toggle expanded class on the row (parent <tr>)
-                const row = this.closest('tr');
-                row.classList.toggle('expanded');
+            document.querySelectorAll('#payment tr td[data-label="Amount"]').forEach(function (amountCell) {
+                amountCell.addEventListener('click', function () {
+                    // Toggle expanded class on the row (parent <tr>)
+                    const row = this.closest('tr');
+                    row.classList.toggle('expanded');
 
-                // Change the arrow direction based on the expanded state
-                if (row.classList.contains('expanded')) {
-                    this.querySelector('::after').content = '▲';
-                } else {
-                    this.querySelector('::after').content = '▼';
-                }
+                    // Change the arrow direction based on the expanded state
+                    if (row.classList.contains('expanded')) {
+                        this.querySelector('::after').content = '▲';
+                    } else {
+                        this.querySelector('::after').content = '▼';
+                    }
+                });
             });
-        });
 
 
-        // to toggle dropdown list
+            // to toggle dropdown list
 
-        document.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
-            toggle.addEventListener('click', function (event) {
-                event.preventDefault();  // Prevent the default anchor behavior
-                // Toggle visibility of the dropdown content
-                const dropdownContent = this.nextElementSibling;
-                dropdownContent.style.display = (dropdownContent.style.display === 'flex') ? 'none' : 'flex';
+            document.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
+                toggle.addEventListener('click', function (event) {
+                    event.preventDefault();  // Prevent the default anchor behavior
+                    // Toggle visibility of the dropdown content
+                    const dropdownContent = this.nextElementSibling;
+                    dropdownContent.style.display = (dropdownContent.style.display === 'flex') ? 'none' : 'flex';
+                });
             });
-        });
 
 
-        // collapse sidebar
-        const menuToggle = document.getElementById('menuToggle');
-        const sideNavBar = document.getElementById('sideNavBar');
-        const openMenu = document.getElementById('openmenu');
+            // collapse sidebar
+            const menuToggle = document.getElementById('menuToggle');
+            const sideNavBar = document.getElementById('sideNavBar');
+            const openMenu = document.getElementById('openmenu');
 
-        // Toggle sidebar visibility
-        menuToggle.addEventListener('click', function () {
-            sideNavBar.style.display = 'none';  // Hide the sidebar
-            openMenu.style.display = 'block';   // Show the hamburger icon
-        });
+            // Toggle sidebar visibility
+            menuToggle.addEventListener('click', function () {
+                sideNavBar.style.display = 'none';  // Hide the sidebar
+                openMenu.style.display = 'block';   // Show the hamburger icon
+            });
 
-        // Add an event listener for the hamburger-open-menu to bring the sidebar back
-        openMenu.addEventListener('click', function () {
-            sideNavBar.style.display = 'flex';  // Show the sidebar
-            openMenu.style.display = 'none';     // Hide the hamburger icon
-        });
-    </script>
+            // Add an event listener for the hamburger-open-menu to bring the sidebar back
+            openMenu.addEventListener('click', function () {
+                sideNavBar.style.display = 'flex';  // Show the sidebar
+                openMenu.style.display = 'none';     // Hide the hamburger icon
+            });
+            // Data for tasks and transaction history
+            const tasksData = [
+                { task: 'Update Tax Document for Alphalinx...', category: 'Compliance', dueDate: '23/11/23', status: 'Request sent', statusClass: '' },
+                { task: 'Update KYC document', category: 'Compliance', dueDate: '23/11/23', status: 'Request sent', statusClass: '' },
+                { task: 'Add clearer photo for visa application', category: 'Visa center', dueDate: '23/11/23', status: 'Pending action', statusClass: 'pending' },
+                { task: 'Document not clear: please add new file', category: 'Visa center', dueDate: '23/11/23', status: 'Pending action', statusClass: 'pending' }
+            ];
+
+            const transactionsData = [
+                { transactionId: '#764657758', date: '23/01/19', amount: '$5.99', description: 'Mailbox' },
+                { transactionId: '#764657758', date: '22/01/19', amount: '$99', description: 'Registration (upgrade)' },
+                { transactionId: '#764657758', date: '19/01/19', amount: '$5.99', description: 'Description Mailbox' },
+                { transactionId: '#764657758', date: '09/01/19', amount: '$5.99', description: 'Description Mailbox' },
+                { transactionId: '#764657758', date: '23/12/18', amount: '$5.99', description: 'Description Mailbox' }
+            ];
+
+            // Function to populate the tasks table
+            const populateTasksTable = () => {
+                const tableBody = document.querySelector('#tasks-table tbody');
+                tableBody.innerHTML = ''; // Clear existing content
+
+                tasksData.forEach((task) => {
+                    const tr = document.createElement('tr');
+
+                    tr.innerHTML = `
+                            <td>${task.task}</td>
+                            <td>${task.category}</td>
+                            <td>${task.dueDate}</td>
+                            <td><button class="status-button ${task.statusClass}">${task.status}</button></td>
+                    `;
+
+                    tableBody.appendChild(tr);
+                });
+            };
+
+            // Function to populate the transactions table
+            const populateTransactionsTable = () => {
+                const tableBody = document.querySelector('#payment-table tbody');
+                tableBody.innerHTML = ''; // Clear existing content
+
+                transactionsData.forEach((transaction) => {
+                    const tr = document.createElement('tr');
+
+                    tr.innerHTML = `
+                            <td data-label="Transaction ID">${transaction.transactionId}</td>
+                            <td data-label="Date">${transaction.date}</td>
+                            <td data-label="Amount">${transaction.amount}</td>
+                            <td data-label="Description">${transaction.description}</td>
+                    `;
+
+                    tableBody.appendChild(tr);
+                });
+            };
+
+            // Populate tables on page load
+            window.onload = () => {
+                populateTasksTable();
+                populateTransactionsTable();
+            };
+
+        </script>
 </body>
 
 </html>

@@ -8,13 +8,13 @@ dropdown.onclick = function(){
 
 // to change the text Dynamically
 const complianceNumber=document.getElementById('complianceNumber').textContent = 2;
-const values = [12, 6   , 10]; // Your input values
+const values = [12, 6, 10]; // Your input values
 
 const colors = ['#f39c6b', '#e74c3c', '#27ae60']; // Colors for each segment
 
 function createDoughnutChart(values, colors, gap = 2) {
     const total = values.reduce((acc, val) => acc + val, 0);
-    const AppicationNumber=document.getElementById('doughnut-chart-text').innerText=`${total} Applications`
+    const ApplicationNumber=document.getElementById('doughnut-chart-text').innerText=`${total} Applications`
     let cumulativePercent = 0;
     const gapPercent = gap / 360; // convert gap to percentage of the circle
 
@@ -71,3 +71,5 @@ let sidebar = document.querySelector('.sidebar')
 btn.onclick = function (){
     sidebar.classList.toggle('active');
 };
+
+
